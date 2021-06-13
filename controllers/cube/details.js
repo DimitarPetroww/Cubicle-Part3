@@ -1,4 +1,4 @@
-const promise = require("../util/promise")
+const promise = require("../../util/promise")
 
 module.exports = {
     GET: async (req, res) => {

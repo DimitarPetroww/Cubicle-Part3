@@ -1,6 +1,6 @@
 const express = require("express")
 const create = require("../controllers/cube/create")
-const details = require("../controllers/details")
+const details = require("../controllers/cube/details")
 const browse = require("../controllers/cube/browse")
 
 const router = express.Router()
