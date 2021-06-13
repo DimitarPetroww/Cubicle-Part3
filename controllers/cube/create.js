@@ -9,7 +9,8 @@ module.exports = {
             name: req.body.name,
             description: req.body.description,
             imageURL: req.body.imageURL,
-            difficulty: Number(req.body.difficulty)
+            difficulty: Number(req.body.difficulty),
+            ownerId: req.user._id
         }
         const [_, error] = await promise(req.cubeStorage.create(cube))
         if(error !== null) {

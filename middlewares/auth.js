@@ -7,18 +7,21 @@ const promise = require("../util/promise")
 module.exports = () =>  (req, res, next) => {
     req.userService = {
         register,
-        login
+        login,
+        logout
     }
+
     const token = req.cookies[config.COOKIE_NAME];
     try {
         const user = jwt.verify(token, config.TOKEN_SECRET);
         req.user = user;
-   
+        res.locals.isLogged = true
     } catch (error) {
         res.clearCookie(config.COOKIE_NAME);
     }
 
     next()
+
     async function login(user) {
         const existing = await userService.findUserByUsername(user.username)
         if (!existing) {
@@ -47,5 +50,9 @@ module.exports = () =>  (req, res, next) => {
         const token = jwt.sign({ username: user.username, _id: user._id }, config.TOKEN_SECRET);
         res.cookie(config.COOKIE_NAME, token)
         return data
+    }
+    function logout() {
+        res.clearCookie(config.COOKIE_NAME)
+        res.redirect("/")
     }
 }
