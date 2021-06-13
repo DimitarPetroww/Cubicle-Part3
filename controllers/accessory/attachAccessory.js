@@ -2,12 +2,11 @@ const promise = require("../../util/promise")
 
 module.exports = {
     GET: async (req, res) => {
-        const [cube, error1] = await promise(req.cubeStorage.getOne(req.params.id))
-        const [accessories, error2] = await promise(req.accessoryStorage.getAll())
-        if (error1 !== null || error2 !== null) {
+        const [accessories, error] = await promise(req.accessoryStorage.getAll())
+        if (error !== null) {
             return res.redirect("/404")
         }
-        res.render("attachAccessory", { cube, accessories, title: "Attach Accessory" })
+        res.render("attachAccessory", { cube: req.cube, accessories, title: "Attach Accessory" })
     },
     POST: async (req, res) => {
         const accessoryID = req.body.accessory

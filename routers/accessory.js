@@ -4,11 +4,12 @@ const createAccessory = require("../controllers/accessory/createAccessory")
 
 const router = express.Router()
 
-const { isAuth } = require("../middlewares/guards")
+const { isAuth, isOwner } = require("../middlewares/guards")
+const { preloadCube } = require("../middlewares/preload")
 
 router.get("/create", isAuth(), createAccessory.GET)
 router.post("/create", isAuth(), createAccessory.POST)
-router.get("/attach/:id", isAuth(), attachAccessory.GET)
-router.post("/attach/:id", isAuth(), attachAccessory.POST)
+router.get("/attach/:id", isAuth(), preloadCube(), isOwner(), attachAccessory.GET)
+router.post("/attach/:id", isAuth(), preloadCube(), isOwner(), attachAccessory.POST)
 
 module.exports = router
