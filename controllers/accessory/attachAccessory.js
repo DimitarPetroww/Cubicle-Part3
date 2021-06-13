@@ -15,7 +15,7 @@ module.exports = {
 
         const [_, error] = await promise(req.accessoryStorage.attach(cubeID, accessoryID))
         if (error !== null) {
-            return res.render("attachAccessory", { error: e.message })
+            return res.render("attachAccessory", { error: error.message })
         }
 
         res.redirect("/cubes/details/" + cubeID)
