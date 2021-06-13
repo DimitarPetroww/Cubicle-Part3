@@ -4,8 +4,9 @@ const config = require('./config/config')[env];
 
 async function init() {
     const app = require('express')();
-    require('./config/express')(app);
     await require("./config/db")(app)
+    
+    require('./config/express')(app);
     
     require('./config/routes')(app);
 

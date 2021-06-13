@@ -5,9 +5,9 @@ const browse = require("../controllers/cube/browse")
 
 const router = express.Router()
 
+router.get("/browse", browse.GET)
 router.get("/create", create.GET)
 router.get("/details/:id", details.GET)
-router.get("/browse", browse.GET)
 
 router.post("/create", create.POST)
 

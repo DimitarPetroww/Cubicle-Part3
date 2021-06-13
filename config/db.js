@@ -11,12 +11,6 @@ module.exports = async (app) => {
             reject(err.message)
         })
         db.on("open", () => {
-            app.use((req, res, next) => {
-                req.cubeStorage = cubeStorage
-                req.accessoryStorage = accessoryStorage
-                next()
-            })
-
             resolve("connected!")
         })
     })

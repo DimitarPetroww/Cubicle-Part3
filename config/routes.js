@@ -10,5 +10,5 @@ module.exports = (app) => {
     app.use("/accessories", accessoryRouter)
     app.use("/auth", authRouter)
 
-    app.get("*", notFound.GET)
+    app.all("*", notFound.GET)
 };
