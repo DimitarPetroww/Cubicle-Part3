@@ -1,11 +1,15 @@
 const promise = require("../../util/promise")
 
 module.exports = {
-    GET: (req, res) => {
-        res.render("edit", { title: "Edit Cube"})
+    GET: async (req, res) => {
+        const [cube, error] = await promise(req.cubeStorage.getOne(req.params.id))
+        if(error) {
+            res.redirect("/404")
+        }
+        cube[`select${cube.difficulty}`] = true
+        res.render("edit", { title: "Edit Cube", cube})
     },
     POST: async (req, res) => {
-        console.log(req.user);
         const cube = {
             name: req.body.name,
             description: req.body.description,
@@ -13,10 +17,10 @@ module.exports = {
             difficulty: Number(req.body.difficulty),
             ownerId: req.user._id
         }
-        const [_, error] = await promise(req.cubeStorage.create(cube))
+        const [_, error] = await promise(req.cubeStorage.update(req.params.id, cube))
         if(error !== null) {
-            return res.render("create", {error: error.message, data: req.body})
+            return res.render("edit", {error: error.message, data: req.body})
         }
-        res.redirect("/cubes/browse")
+        res.redirect("/cubes/details/" + req.params.id)
     }
 }
