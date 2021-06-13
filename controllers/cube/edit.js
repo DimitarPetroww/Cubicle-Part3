@@ -2,7 +2,7 @@ const promise = require("../../util/promise")
 
 module.exports = {
     GET: (req, res) => {
-        res.render("create", { title: "Create Cube"})
+        res.render("edit", { title: "Edit Cube"})
     },
     POST: async (req, res) => {
         console.log(req.user);

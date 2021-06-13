@@ -6,7 +6,8 @@ module.exports = {
         if(error !== null) {
             return res.redirect("/404")
         }
-        res.render("details", { cube, title: cube.name })
+      
+        res.render("details", { cube, title: cube.name, isOwner: req.user && cube.owner._id == req.user._id })
     },
 
 }

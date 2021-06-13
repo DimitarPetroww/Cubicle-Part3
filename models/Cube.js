@@ -6,7 +6,7 @@ const schema = new Schema({
     imageURL: { type: String, required: [true, "ImageURL is required"], match: /^https?/},
     difficulty: { type: Number, required: [true, "Difficulty level is required"], min: 1, max: 6},
     accessories: [{type: Schema.Types.ObjectId, ref: "Accessory"}],
-    ownerId: {type: Schema.Types.ObjectId, ref: "User"}
+    owner: {type: Schema.Types.ObjectId, ref: "User", required: true}
 })
 
 module.exports = model("Cube", schema)

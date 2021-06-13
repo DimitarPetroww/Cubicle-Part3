@@ -23,16 +23,16 @@ module.exports = () =>  (req, res, next) => {
     next()
 
     async function login(user) {
-        const existing = await userService.findUserByUsername(user.username)
-        if (!existing) {
+        const data = await userService.findUserByUsername(user.username)
+        if (!data) {
             throw new Error("Wrong username or password!")
         }
-        const isMatch = await bcrypt.compare(user.password, existing.hashedPassword)
+        const isMatch = await bcrypt.compare(user.password, data.hashedPassword)
         if (!isMatch) {
             throw new Error("Wrong username or password!")
         }
 
-        const token = jwt.sign({ username: user.username, _id: user._id }, config.TOKEN_SECRET);
+        const token = jwt.sign({ username: user.username, _id: data._id }, config.TOKEN_SECRET);
         res.cookie(config.COOKIE_NAME, token)
     }
     async function register(user) {
@@ -47,7 +47,7 @@ module.exports = () =>  (req, res, next) => {
         if(error !== null) {
             throw new Error(error.message)
         }
-        const token = jwt.sign({ username: user.username, _id: user._id }, config.TOKEN_SECRET);
+        const token = jwt.sign({ username: user.username, _id: data._id }, config.TOKEN_SECRET);
         res.cookie(config.COOKIE_NAME, token)
         return data
     }

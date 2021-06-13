@@ -9,7 +9,7 @@ async function getAll(options = {}) {
     return Cube.find(options).lean()
 }
 async function getOne(id) {
-    return Cube.findById(id).populate("accessories").lean()
+    return Cube.findById(id).populate("accessories").populate("owner").lean()
 }
 
 
