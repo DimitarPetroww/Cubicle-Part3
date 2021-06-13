@@ -7,7 +7,7 @@ module.exports = {
         if (error1 !== null || error2 !== null) {
             return res.redirect("/404")
         }
-        res.render("attachAccessory", { cube, accessories })
+        res.render("attachAccessory", { cube, accessories, title: "Attach Accessory" })
     },
     POST: async (req, res) => {
         const accessoryID = req.body.accessory

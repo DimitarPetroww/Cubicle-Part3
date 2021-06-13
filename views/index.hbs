@@ -6,9 +6,6 @@
   <input type="number" name="to" class="difficulty" placeholder="Difficulty to..." value="{{search.to}}">
   <input type="submit" value="search">
 </form>
-{{#if err}}
-  <p style="color: red;">{{err}}</p>
-{{/if}}
 {{#each cubes}}
 {{> cube}}
   {{else}}

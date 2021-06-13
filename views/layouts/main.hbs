@@ -3,10 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Cubicle</title>
+  <title>{{title}}</title>
   <link href="/static/css/site.css" type="text/css" rel="stylesheet">
   <link rel='shortcut icon' type='image/x-icon' href='/static/images/favicon.png' />
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -21,6 +22,9 @@
       </ul>
     </header>
     <main>
+      {{#if error}}
+      <span class="error">{{error}}</span>
+      {{/if}}
       {{{body}}}
     </main>
   </div>

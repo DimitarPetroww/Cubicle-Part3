@@ -6,7 +6,7 @@ module.exports = {
         if(error !== null) {
             return res.redirect("/404")
         }
-        res.render("details", { cube })
+        res.render("details", { cube, title: cube.name })
     },
 
 }

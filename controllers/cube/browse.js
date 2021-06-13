@@ -13,8 +13,8 @@ module.exports = {
         }
         const [cubes, error] = await promise(req.cubeStorage.getAll(options))
         if (error !== null) {
-            return res.render("index", { err: error.message })
+            return res.render("index", { error: error.message })
         }
-        res.render("index", { cubes, search: req.query })
+        res.render("index", { cubes, search: req.query, title: "Browse" })
     }
 }

@@ -2,7 +2,7 @@ const promise = require("../../util/promise")
 
 module.exports = {
     GET: (req, res) => {
-        res.render("create")
+        res.render("create", { title: "Create Cube"})
     },
     POST: async (req, res) => {
         const cube = {
@@ -13,7 +13,7 @@ module.exports = {
         }
         const [_, error] = await promise(req.cubeStorage.create(cube))
         if(error !== null) {
-            return res.render("create", {error: error.message})
+            return res.render("create", {error: error.message, data: req.body})
         }
         res.redirect("/cubes/browse")
     }
