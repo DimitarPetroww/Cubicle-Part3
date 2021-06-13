@@ -1,11 +1,9 @@
 const express = require("express")
-
-const browse = require("../controllers/browse")
-const about = require("../controllers/about")
+const about = require("../controllers/base/about")
 
 const router = express.Router()
 
-router.get("/", browse.GET)
+router.get("/", (req, res) => res.redirect("/cubes/browse"))
 router.get("/about", about.GET)
 
 module.exports = router

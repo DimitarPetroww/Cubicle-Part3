@@ -1,4 +1,4 @@
-const promise = require("../util/promise")
+const promise = require("../../util/promise")
 
 module.exports = {
     GET: async (req, res) => {
@@ -18,6 +18,6 @@ module.exports = {
             return res.render("attachAccessory", { error: e.message })
         }
 
-        res.redirect("/cube/details/" + cubeID)
+        res.redirect("/cubes/details/" + cubeID)
     }
 }

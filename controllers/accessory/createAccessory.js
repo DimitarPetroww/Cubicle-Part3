@@ -1,4 +1,4 @@
-const promise = require("../util/promise")
+const promise = require("../../util/promise")
 
 module.exports = {
     GET: (req, res) => {
@@ -14,6 +14,6 @@ module.exports = {
         if(error !== null) {
             return res.render("createAccessory", {error: error.message})
         }
-        res.redirect("/")
+        res.redirect("/cubes/browse")
     }
 }

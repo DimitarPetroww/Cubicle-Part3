@@ -1,6 +1,6 @@
 const express = require("express")
-const attachAccessory = require("../controllers/attachAccessory")
-const createAccessory = require("../controllers/createAccessory")
+const attachAccessory = require("../controllers/accessory/attachAccessory")
+const createAccessory = require("../controllers/accessory/createAccessory")
 
 const router = express.Router()
 
